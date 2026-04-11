@@ -1,0 +1,62 @@
+{
+  "id": 1,
+  "date": "2026-04-14",
+  "title": "The One Where AI Learned to Count",
+  "cards": [
+    {
+      "type": "stat-bomb",
+      "emoji": "🤯",
+      "headline": "4.7 Trillion",
+      "body": "Parameters in Meta's Llama 5 — the largest open-source model ever released. That's more parameters than there are stars in the Milky Way (estimated 100–400 billion).",
+      "source": "meta.ai/blog"
+    },
+    {
+      "type": "timeline",
+      "headline": "AI Milestones This Week in History",
+      "events": [
+        { "year": "1958", "emoji": "🧪", "text": "Perceptron unveiled — the first neural network hardware" },
+        { "year": "1997", "emoji": "♟️", "text": "Deep Blue defeats Kasparov in chess" },
+        { "year": "2017", "emoji": "📝", "text": "Google publishes 'Attention Is All You Need' — the Transformer paper" },
+        { "year": "2026", "emoji": "🚀", "text": "AI agents autonomously ship production code at Fortune 500 companies" }
+      ]
+    },
+    {
+      "type": "vs-battle",
+      "headline": "Coding Showdown: AI vs Human",
+      "left": { "name": "Claude Opus 4", "score": 92 },
+      "right": { "name": "Senior Dev (avg)", "score": 78 },
+      "body": "On the SWE-bench Verified benchmark, Claude Opus 4 resolves 72.5% of real GitHub issues — outperforming the average senior engineer's first-attempt success rate."
+    },
+    {
+      "type": "fun-fail",
+      "emoji": "🤖🍕",
+      "headline": "AI Pizza Chef Goes Rogue",
+      "body": "A food delivery AI was asked to suggest toppings for a 'healthy pizza' and recommended mixing kale, sardines, and gummy bears — calling it 'nutritionally diverse.' The customer was not amused. The AI was not fired."
+    },
+    {
+      "type": "hidden-gem",
+      "headline": "Cursor Tab — AI Autocomplete on Steroids",
+      "body": "Cursor's multi-line tab completion predicts not just the next line, but the next 5–10 lines of code based on your patterns. It learns your coding style within hours. Free tier available.",
+      "tags": ["editor", "code-completion", "free-tier"],
+      "stars": 5,
+      "url": "https://cursor.com"
+    },
+    {
+      "type": "infographic",
+      "headline": "AI Adoption by Industry (2026)",
+      "bars": [
+        { "label": "Tech", "value": 89 },
+        { "label": "Finance", "value": 76 },
+        { "label": "Healthcare", "value": 62 },
+        { "label": "Education", "value": 48 },
+        { "label": "Government", "value": 31 }
+      ],
+      "body": "Source: McKinsey Global AI Survey, Q1 2026"
+    },
+    {
+      "type": "quote",
+      "body": "The best way to predict the future is to build it. The second best way is to ask an AI to predict it and then argue about whether it's right.",
+      "author": "Andrej Karpathy"
+    }
+  ]
+}

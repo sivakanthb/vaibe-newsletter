@@ -1,0 +1,13 @@
+{
+  "name": "vAIbe",
+  "description": "Your weekly dose of AI surprises",
+  "issues": [
+    {
+      "id": 1,
+      "date": "2026-04-14",
+      "title": "The One Where AI Learned to Count",
+      "cards": 7,
+      "file": "2026-04-14.json"
+    }
+  ]
+}

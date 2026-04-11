@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>vAIbe — The Vault</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0a0a1a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { color: #00f0ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(88, 28, 135, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+}
+
+/* ── Header ───────────────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+.logo {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.logo-v { color: #ffffff; }
+.logo-ai { color: #00f0ff; text-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2); }
+.logo-be { color: #ffffff; }
+.tagline {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #999;
+  font-style: italic;
+}
+.nav-links {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.nav-links a {
+  color: #888;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: #00f0ff; text-decoration: none; }
+
+/* ── Vault Title ──────────────────────────────────── */
+.vault-title {
+  text-align: center;
+  padding: 2rem 1rem 0.5rem;
+}
+.vault-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.vault-title h1 span { color: #7c3aed; }
+.vault-title p {
+  color: #777;
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+/* ── Tiles Grid ───────────────────────────────────── */
+.tiles-grid {
+  max-width: 1100px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Tile ─────────────────────────────────────────── */
+.tile {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 240, 255, 0.2);
+}
+.tile.active {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+/* ── Tile Preview (Miniature) ─────────────────────── */
+.tile-preview {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+  background: #0d0d24;
+}
+.tile-preview-inner {
+  transform: scale(0.25);
+  transform-origin: top left;
+  width: 400%;
+  pointer-events: none;
+}
+.tile-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(transparent, rgba(10, 10, 26, 0.95));
+}
+
+/* ── Tile Meta ────────────────────────────────────── */
+.tile-meta {
+  padding: 1rem 1.2rem;
+}
+.tile-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+}
+.tile-badge.new {
+  background: rgba(0, 240, 255, 0.15);
+  color: #00f0ff;
+  animation: glow-badge 2s ease-in-out infinite;
+}
+@keyframes glow-badge { 50% { box-shadow: 0 0 12px rgba(0, 240, 255, 0.3); } }
+.tile-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0.5rem;
+  line-height: 1.3;
+}
+.tile-info {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+.tile-expand {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: #00f0ff;
+  transition: color 0.2s;
+}
+.tile-expand .arrow {
+  transition: transform 0.3s;
+}
+.tile.active .tile-expand .arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Expanded Content ─────────────────────────────── */
+.tile-expanded {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+.tile.active .tile-expanded {
+  max-height: 5000px;
+}
+.tile-expanded-inner {
+  padding: 1.5rem;
+}
+
+/* ── Card styles (reused from index.html, simplified) */
+.exp-cards { display: flex; flex-direction: column; gap: 1rem; }
+.exp-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1.2rem;
+}
+.exp-card-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 0.5rem; }
+.exp-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 0.4rem; }
+.exp-card p { color: #aaa; line-height: 1.6; font-size: 0.9rem; }
+.exp-stat { font-size: 2.5rem; font-weight: 900; background: linear-gradient(135deg, #00f0ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.exp-bar-row { display: flex; align-items: center; margin-bottom: 0.4rem; gap: 0.6rem; }
+.exp-bar-label { width: 90px; font-size: 0.75rem; color: #aaa; text-align: right; flex-shrink: 0; }
+.exp-bar-track { flex: 1; height: 16px; background: rgba(255, 255, 255, 0.06); border-radius: 8px; overflow: hidden; }
+.exp-bar-fill { height: 100%; border-radius: 8px; font-size: 0.65rem; font-weight: 700; color: #fff; display: flex; align-items: center; padding-left: 6px; }
+
+/* ── Empty State ──────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #555;
+}
+.empty-state .emoji { font-size: 4rem; margin-bottom: 1rem; }
+
+/* ── Footer ───────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #555;
+  font-size: 0.85rem;
+}
+.footer .logo-mini { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 700px) {
+  .logo { font-size: 2.5rem; }
+  .tiles-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-v">v</span><span class="logo-ai">AI</span><span class="logo-be">be</span>
+  </div>
+  <div class="tagline">Your weekly dose of AI surprises</div>
+  <nav class="nav-links">
+    <a href="index.html">Latest Issue</a>
+    <a href="vault.html" class="active">The Vault</a>
+  </nav>
+</header>
+
+<div class="vault-title">
+  <h1>🗄️ The <span>Vault</span></h1>
+  <p>Every issue, preserved. Click any tile to expand.</p>
+</div>
+
+<div id="tiles-grid" class="tiles-grid"></div>
+
+<div id="empty-state" class="empty-state" style="display:none;">
+  <div class="emoji">🤖</div>
+  <h2>The Vault is Empty</h2>
+  <p>No issues yet. The first one drops soon!</p>
+</div>
+
+<footer class="footer">
+  <div class="logo-mini"><span class="logo-v">v</span><span class="logo-ai">AI</span><span class="logo-be">be</span></div>
+  <p>Crafted with curiosity. Powered by coffee & code.</p>
+  <p style="margin-top: 0.5rem;">© 2026 vAIbe · <a href="index.html">Latest Issue</a></p>
+</footer>
+
+<script>
+// ── Card type labels ─────────────────────────────────
+const typeLabels = {
+  'stat-bomb': '🤯 Mind-Blowing Stat',
+  'timeline': '📜 AI History',
+  'vs-battle': '⚔️ VS Battle',
+  'quote': '💬 Wise Words',
+  'fun-fail': '😂 AI Fail',
+  'hidden-gem': '💎 Hidden Gem',
+  'infographic': '📊 By The Numbers',
+};
+
+// ── Render a card inside expanded view ───────────────
+function renderExpCard(c) {
+  const label = typeLabels[c.type] || c.type;
+  switch (c.type) {
+    case 'stat-bomb':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><div class="exp-stat">${c.headline}</div><p>${c.body}</p></div>`;
+    case 'timeline':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><h3>${c.headline}</h3><p>${c.events.map(e => `${e.emoji} ${e.year}: ${e.text}`).join('<br>')}</p></div>`;
+    case 'vs-battle':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><h3>${c.headline || `${c.left.name} vs ${c.right.name}`}</h3><p>${c.left.name}: ${c.left.score}% · ${c.right.name}: ${c.right.score}%</p>${c.body ? `<p>${c.body}</p>` : ''}</div>`;
+    case 'quote':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><p style="font-style:italic;color:#ccc;">"${c.body}"</p><p style="color:#888;margin-top:0.4rem;">— ${c.author}</p></div>`;
+    case 'fun-fail':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><h3>${c.emoji || '🤖💥'} ${c.headline}</h3><p>${c.body}</p></div>`;
+    case 'hidden-gem':
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><h3>${c.headline}</h3><p>${c.body}</p>${c.tags ? c.tags.map(t => `<span style="display:inline-block;background:rgba(245,158,11,0.15);color:#f59e0b;padding:0.15rem 0.5rem;border-radius:6px;font-size:0.7rem;margin:0.3rem 0.2rem 0 0;">${t}</span>`).join('') : ''}</div>`;
+    case 'infographic':
+      const barColors = ['#00f0ff', '#7c3aed', '#ec4899', '#f59e0b', '#10b981'];
+      const bars = c.bars.map((b, i) => `
+        <div class="exp-bar-row">
+          <div class="exp-bar-label">${b.label}</div>
+          <div class="exp-bar-track"><div class="exp-bar-fill" style="width:${b.value}%;background:${barColors[i % barColors.length]}">${b.value}%</div></div>
+        </div>`).join('');
+      return `<div class="exp-card"><div class="exp-card-type">${label}</div><h3>${c.headline}</h3>${bars}</div>`;
+    default:
+      return `<div class="exp-card"><div class="exp-card-type">${c.type}</div><p>${JSON.stringify(c)}</p></div>`;
+  }
+}
+
+// ── Build mini preview HTML for a tile ───────────────
+function buildPreview(issue) {
+  // Show a few key stats from the cards as a mini visual
+  let previewHTML = `<div style="padding:1rem;color:#aaa;font-size:0.85rem;">`;
+  const statCard = issue.cards.find(c => c.type === 'stat-bomb');
+  if (statCard) {
+    previewHTML += `<div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#00f0ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">${statCard.headline}</div>`;
+    previewHTML += `<div style="font-size:0.75rem;color:#666;margin-bottom:0.5rem;">${statCard.body}</div>`;
+  }
+  // Card type icons
+  previewHTML += `<div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.5rem;">`;
+  issue.cards.forEach(c => {
+    const icon = { 'stat-bomb': '🤯', 'timeline': '📜', 'vs-battle': '⚔️', 'quote': '💬', 'fun-fail': '😂', 'hidden-gem': '💎', 'infographic': '📊' }[c.type] || '📄';
+    previewHTML += `<span style="font-size:1.3rem;">${icon}</span>`;
+  });
+  previewHTML += `</div></div>`;
+  return previewHTML;
+}
+
+// ── Load + Render Vault ──────────────────────────────
+let openTileId = null;
+let issueCache = {};
+
+async function loadVault() {
+  try {
+    const idx = await fetch('data/issues.json').then(r => r.json());
+    if (!idx.issues || idx.issues.length === 0) {
+      document.getElementById('empty-state').style.display = 'block';
+      return;
+    }
+
+    // Load all issues
+    const issues = await Promise.all(
+      idx.issues.map(entry => fetch(`data/issues/${entry.file}`).then(r => r.json()))
+    );
+    issues.forEach(iss => { issueCache[iss.id] = iss; });
+
+    // Render tiles (newest first)
+    const grid = document.getElementById('tiles-grid');
+    const reversed = [...issues].reverse();
+    grid.innerHTML = reversed.map((issue, i) => {
+      const isNewest = i === 0;
+      const dateStr = new Date(issue.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return `
+        <div class="tile" data-id="${issue.id}" onclick="toggleTile(${issue.id})">
+          <div class="tile-preview">
+            <div class="tile-preview-inner">${buildPreview(issue)}</div>
+          </div>
+          <div class="tile-meta">
+            <span class="tile-badge ${isNewest ? 'new' : ''}">Issue #${issue.id}${isNewest ? ' · NEW' : ''}</span>
+            <div class="tile-title">${issue.title}</div>
+            <div class="tile-info">
+              <span>📅 ${dateStr}</span>
+              <span>🃏 ${issue.cards.length} cards</span>
+            </div>
+            <div class="tile-expand">
+              <span class="arrow">▼</span> <span class="expand-text">Expand</span>
+            </div>
+          </div>
+          <div class="tile-expanded">
+            <div class="tile-expanded-inner">
+              <div class="exp-cards">
+                ${issue.cards.map(c => renderExpCard(c)).join('')}
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    console.error('Failed to load vault:', err);
+    document.getElementById('empty-state').style.display = 'block';
+  }
+}
+
+function toggleTile(id) {
+  const tiles = document.querySelectorAll('.tile');
+  tiles.forEach(tile => {
+    const tileId = parseInt(tile.dataset.id);
+    if (tileId === id) {
+      tile.classList.toggle('active');
+      const text = tile.querySelector('.expand-text');
+      text.textContent = tile.classList.contains('active') ? 'Collapse' : 'Expand';
+      // Scroll into view if expanding
+      if (tile.classList.contains('active')) {
+        setTimeout(() => tile.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    } else {
+      tile.classList.remove('active');
+      const text = tile.querySelector('.expand-text');
+      if (text) text.textContent = 'Expand';
+    }
+  });
+}
+
+loadVault();
+</script>
+</body>
+</html>
