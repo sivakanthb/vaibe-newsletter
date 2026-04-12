@@ -241,14 +241,14 @@ body::before {
   </div>
   <div class="tagline">Your weekly dose of AI surprises</div>
   <nav class="nav-links">
-    <a href="index.html">Latest Issue</a>
+    <a href="index.html">Latest Edition</a>
     <a href="vault.html" class="active">The Vault</a>
   </nav>
 </header>
 
 <div class="vault-title">
   <h1>🗄️ The <span>Vault</span></h1>
-  <p>Every issue, preserved. Click any tile to expand.</p>
+  <p>Every edition, preserved. Click any tile to expand.</p>
 </div>
 
 <div id="tiles-grid" class="tiles-grid"></div>
@@ -256,12 +256,12 @@ body::before {
 <div id="empty-state" class="empty-state" style="display:none;">
   <div class="emoji">🤖</div>
   <h2>The Vault is Empty</h2>
-  <p>No issues yet. The first one drops soon!</p>
+  <p>No editions yet. The first one drops soon!</p>
 </div>
 
 <footer class="footer">
   <div class="logo-mini"><span class="logo-v">v</span><span class="logo-ai">Ai</span><span class="logo-be">be</span></div>
-  <p>© 2026 vAibe · <a href="index.html">Latest Issue</a></p>
+  <p>© 2026 vAibe · <a href="index.html">Latest Edition</a></p>
   <p style="margin-top: 0.3rem;">Built by <a href="https://sivakanth.vercel.app" target="_blank" rel="noopener noreferrer">Sivakanth Badigenchala</a></p>
 </footer>
 
@@ -355,7 +355,7 @@ async function loadVault() {
             <div class="tile-preview-inner">${buildPreview(issue)}</div>
           </div>
           <div class="tile-meta">
-            <span class="tile-badge ${isNewest ? 'new' : ''}">Issue #${issue.id}${isNewest ? ' · NEW' : ''}</span>
+            <span class="tile-badge ${isNewest ? 'new' : ''}">Edition #${issue.id}${isNewest ? ' · NEW' : ''}</span>
             <div class="tile-title">${issue.title}</div>
             <div class="tile-info">
               <span>📅 ${dateStr}</span>

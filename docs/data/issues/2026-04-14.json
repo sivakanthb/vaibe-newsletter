@@ -4,13 +4,6 @@
   "title": "The One Where AI Learned to Count",
   "cards": [
     {
-      "type": "stat-bomb",
-      "emoji": "🤯",
-      "headline": "4.7 Trillion",
-      "body": "Parameters in Meta's Llama 5 — the largest open-source model ever released. That's more parameters than there are stars in the Milky Way (estimated 100–400 billion).",
-      "source": "meta.ai/blog"
-    },
-    {
       "type": "timeline",
       "headline": "AI Milestones This Week in History",
       "events": [
@@ -19,6 +12,13 @@
         { "year": "2017", "emoji": "📝", "text": "Google publishes 'Attention Is All You Need' — the Transformer paper" },
         { "year": "2026", "emoji": "🚀", "text": "AI agents autonomously ship production code at Fortune 500 companies" }
       ]
+    },
+    {
+      "type": "stat-bomb",
+      "emoji": "🤯",
+      "headline": "4.7 Trillion",
+      "body": "Parameters in Meta's Llama 5 — the largest open-source model ever released. That's more parameters than there are stars in the Milky Way (estimated 100–400 billion).",
+      "source": "meta.ai/blog"
     },
     {
       "type": "vs-battle",

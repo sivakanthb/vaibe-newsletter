@@ -419,7 +419,7 @@ body::before {
   </div>
   <div class="tagline">Your weekly dose of AI surprises</div>
   <nav class="nav-links">
-    <a href="index.html" class="active">Latest Issue</a>
+    <a href="index.html" class="active">Latest Edition</a>
     <a href="vault.html">The Vault</a>
   </nav>
 </header>
@@ -431,7 +431,7 @@ body::before {
 <!-- Footer -->
 <footer class="footer">
   <div class="logo-mini"><span class="logo-v">v</span><span class="logo-ai">Ai</span><span class="logo-be">be</span></div>
-  <p>© 2026 vAibe · <a href="vault.html">Browse The Vault</a></p>
+  <p>© 2026 vAibe · <a href="vault.html">The Vault</a></p>
   <p style="margin-top: 0.3rem;">Built by <a href="https://sivakanth.vercel.app" target="_blank" rel="noopener noreferrer">Sivakanth Badigenchala</a></p>
 </footer>
 
@@ -439,7 +439,7 @@ body::before {
 // ── Card Renderers ───────────────────────────────────
 const renderers = {
   'stat-bomb': (c) => `
-    <div class="card card-stat card-full">
+    <div class="card card-stat">
       <div class="card-type">🤯 Mind-Blowing Stat</div>
       <div class="stat-number">${c.headline}</div>
       <div class="stat-label">${c.body}</div>
@@ -482,7 +482,7 @@ const renderers = {
     </div>`,
 
   'quote': (c) => `
-    <div class="card card-quote card-full">
+    <div class="card card-quote">
       <div class="card-type">💬 Wise Words</div>
       <div class="quote-text">"${c.body}"</div>
       <div class="quote-author">— ${c.author}</div>
@@ -542,7 +542,7 @@ async function loadLatest() {
 
 function renderIssue(issue) {
   document.getElementById('issue-header').innerHTML = `
-    <span class="issue-badge">Issue #${issue.id} ${issue.id === 1 ? '· Premiere' : ''}</span>
+    <span class="issue-badge">Edition #${issue.id} ${issue.id === 1 ? '· Premiere' : ''}</span>
     <h1 class="issue-title">${issue.title}</h1>
     <div class="issue-date">${new Date(issue.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
   `;
@@ -556,7 +556,7 @@ function renderIssue(issue) {
 function showEmpty() {
   document.getElementById('issue-header').innerHTML = `
     <span class="issue-badge">Coming Soon</span>
-    <h1 class="issue-title">First Issue Dropping Soon!</h1>
+    <h1 class="issue-title">First Edition Dropping Soon!</h1>
     <div class="issue-date">Stay tuned — the robot is gathering intel...</div>
   `;
 }
