@@ -431,15 +431,15 @@ body::before {
 <!-- Footer -->
 <footer class="footer">
   <div class="logo-mini"><span class="logo-v">v</span><span class="logo-ai">Ai</span><span class="logo-be">be</span></div>
-  <p>Crafted with curiosity. Powered by coffee & code.</p>
-  <p style="margin-top: 0.5rem;">© 2026 vAibe · <a href="vault.html">Browse The Vault</a></p>
+  <p>© 2026 vAibe · <a href="vault.html">Browse The Vault</a></p>
+  <p style="margin-top: 0.3rem;">Built by <a href="https://sivakanth.vercel.app" target="_blank" rel="noopener noreferrer">Sivakanth Badigenchala</a></p>
 </footer>
 
 <script>
 // ── Card Renderers ───────────────────────────────────
 const renderers = {
   'stat-bomb': (c) => `
-    <div class="card card-stat">
+    <div class="card card-stat card-full">
       <div class="card-type">🤯 Mind-Blowing Stat</div>
       <div class="stat-number">${c.headline}</div>
       <div class="stat-label">${c.body}</div>
@@ -482,7 +482,7 @@ const renderers = {
     </div>`,
 
   'quote': (c) => `
-    <div class="card card-quote">
+    <div class="card card-quote card-full">
       <div class="card-type">💬 Wise Words</div>
       <div class="quote-text">"${c.body}"</div>
       <div class="quote-author">— ${c.author}</div>
