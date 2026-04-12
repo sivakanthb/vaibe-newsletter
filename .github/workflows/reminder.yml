@@ -1,0 +1,57 @@
+name: Weekly Edition Reminder
+
+on:
+  schedule:
+    - cron: '0 14 * * 4'  # Every Thursday at 2 PM UTC (~7:30 PM IST)
+  workflow_dispatch:       # Manual trigger for testing
+
+jobs:
+  create-reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Calculate next edition number
+        id: edition
+        run: |
+          LAST_ID=$(cat docs/data/issues.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(max(i['id'] for i in d['issues']) if d['issues'] else 0)")
+          NEXT_ID=$((LAST_ID + 1))
+          FRIDAY=$(date -d "next friday" +"%b %d, %Y")
+          echo "next_id=$NEXT_ID" >> $GITHUB_OUTPUT
+          echo "friday=$FRIDAY" >> $GITHUB_OUTPUT
+
+      - name: Create reminder issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const nextId = '${{ steps.edition.outputs.next_id }}';
+            const friday = '${{ steps.edition.outputs.friday }}';
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📰 vAibe Edition #${nextId} — due ${friday}`,
+              labels: ['edition'],
+              body: [
+                `## Edition #${nextId} is due this Friday (${friday})`,
+                '',
+                'Time to create the next vAibe edition!',
+                '',
+                '### Card types to fill:',
+                '- [ ] 📜 Timeline — "On This Week in AI History"',
+                '- [ ] 🤯 Stat Bomb — mind-blowing number',
+                '- [ ] ⚔️ VS Battle — AI vs something',
+                '- [ ] 😂 Fun Fail — AI gone wrong',
+                '- [ ] 💎 Hidden Gem — tool or resource',
+                '- [ ] 📊 Infographic — data visualization',
+                '- [ ] 💬 Quote — wise words',
+                '',
+                '### How to create:',
+                '1. Open Copilot and say: **"Create vAibe Edition #' + nextId + '"**',
+                '2. Review the cards',
+                '3. Deploy',
+                '',
+                'Close this issue once the edition is live.'
+              ].join('\n')
+            });
