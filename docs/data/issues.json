@@ -8,6 +8,20 @@
       "title": "The One Where AI Learned to Count",
       "cards": 7,
       "file": "2026-04-10.json"
+    },
+    {
+      "id": 2,
+      "date": "2026-04-17",
+      "title": "The One Where Agents Got Jobs",
+      "cards": 7,
+      "file": "2026-04-17.json"
+    },
+    {
+      "id": 3,
+      "date": "2026-04-24",
+      "title": "The One Where Open Source Fought Back",
+      "cards": 7,
+      "file": "2026-04-24.json"
     }
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "id": 2,
+  "date": "2026-04-17",
+  "title": "The One Where Agents Got Jobs",
+  "cards": [
+    {
+      "type": "timeline",
+      "headline": "AI Milestones This Week in History",
+      "events": [
+        { "year": "1956", "emoji": "🎓", "text": "Dartmouth Conference coins the term 'Artificial Intelligence'" },
+        { "year": "2004", "emoji": "🤖", "text": "DARPA Grand Challenge — first autonomous vehicle race in the Mojave Desert" },
+        { "year": "2016", "emoji": "🏆", "text": "AlphaGo defeats Lee Sedol 4–1 in Go — a watershed moment for deep learning" },
+        { "year": "2026", "emoji": "🛠️", "text": "GitHub reports 70% of new code in enterprise repos is AI-assisted" }
+      ]
+    },
+    {
+      "type": "stat-bomb",
+      "headline": "92%",
+      "body": "of developers now use AI coding assistants daily — up from 41% just two years ago.",
+      "source": "Stack Overflow Developer Survey, 2026"
+    },
+    {
+      "type": "vs-battle",
+      "headline": "AI Agent Frameworks Showdown",
+      "left": { "name": "LangGraph", "score": 74 },
+      "right": { "name": "CrewAI", "score": 68 },
+      "body": "LangGraph leads in production deployments, but CrewAI's simpler multi-agent API is gaining fast among startups. Both are miles ahead of where we were 12 months ago."
+    },
+    {
+      "type": "fun-fail",
+      "emoji": "🤖📧",
+      "headline": "AI Email Assistant Sends 47 Apologies",
+      "body": "An executive's AI email agent was set to 'proactively resolve conflicts.' It interpreted a mildly sarcastic Slack message as a crisis and sent 47 personalized apology emails to the entire department — including one to the CEO apologizing for 'the team's collective existential dread.' The agent was grounded."
+    },
+    {
+      "type": "hidden-gem",
+      "headline": "Windsurf Editor — AI-Native IDE",
+      "body": "Windsurf (formerly Codeium) ships a full IDE where AI isn't bolted on — it's the core experience. Flows let the AI read, edit, and run code across your entire project. Surprisingly good at multi-file refactors. Free tier is generous.",
+      "tags": ["IDE", "AI-native", "free-tier", "multi-file"],
+      "stars": 4,
+      "url": "https://windsurf.com"
+    },
+    {
+      "type": "infographic",
+      "headline": "Where AI Agents Are Deployed (2026)",
+      "bars": [
+        { "label": "Customer Support", "value": 82 },
+        { "label": "Code Generation", "value": 76 },
+        { "label": "Data Analysis", "value": 71 },
+        { "label": "Sales Outreach", "value": 58 },
+        { "label": "Legal Review", "value": 34 }
+      ],
+      "body": "Source: Gartner AI Agent Adoption Report, Q1 2026"
+    },
+    {
+      "type": "quote",
+      "body": "The hottest new programming language is English.",
+      "author": "Andrej Karpathy"
+    }
+  ]
+}

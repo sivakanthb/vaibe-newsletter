@@ -1,0 +1,61 @@
+{
+  "id": 3,
+  "date": "2026-04-24",
+  "title": "The One Where Open Source Fought Back",
+  "cards": [
+    {
+      "type": "timeline",
+      "headline": "AI Milestones This Week in History",
+      "events": [
+        { "year": "1966", "emoji": "💬", "text": "ELIZA chatbot created at MIT — the first conversational AI" },
+        { "year": "2012", "emoji": "🖼️", "text": "AlexNet wins ImageNet — deep learning revolution begins" },
+        { "year": "2023", "emoji": "🦙", "text": "Meta releases Llama — open-source LLMs go mainstream" },
+        { "year": "2026", "emoji": "⚡", "text": "Llama 5 hits 4.7T parameters — open-source rivals closed models on every benchmark" }
+      ]
+    },
+    {
+      "type": "stat-bomb",
+      "headline": "1 Million",
+      "body": "AI agents deployed in production worldwide — crossing the seven-figure milestone for the first time this month.",
+      "source": "a16z State of AI Agents Report, April 2026"
+    },
+    {
+      "type": "vs-battle",
+      "headline": "Open Source vs Closed Source LLMs",
+      "left": { "name": "Llama 5 (Open)", "score": 88 },
+      "right": { "name": "GPT-5 (Closed)", "score": 91 },
+      "body": "The gap has narrowed to just 3 points on MMLU-Pro. A year ago it was 18 points. Open source is catching up at an accelerating pace — and it's free."
+    },
+    {
+      "type": "fun-fail",
+      "emoji": "🤖🎨",
+      "headline": "AI Art Generator Creates 'Abstract Nothing'",
+      "body": "A company's AI image generator was asked to create a 'minimalist logo.' It generated a completely blank white canvas and titled it 'The Essence of Simplicity.' The design team debated for 20 minutes whether it was genius before realizing the model had crashed mid-generation. The blank canvas was accidentally shipped to the client, who loved it."
+    },
+    {
+      "type": "hidden-gem",
+      "headline": "NotebookLM by Google — Your AI Research Partner",
+      "body": "Upload PDFs, docs, or URLs and NotebookLM builds a personal AI that only answers from your sources — no hallucinations from the open web. The audio overview feature turns your documents into a podcast-style discussion. Perfect for research-heavy work.",
+      "tags": ["research", "grounded-AI", "Google", "free"],
+      "stars": 5,
+      "url": "https://notebooklm.google.com"
+    },
+    {
+      "type": "infographic",
+      "headline": "Top AI Skills in Demand (Apr 2026)",
+      "bars": [
+        { "label": "Prompt Eng.", "value": 91 },
+        { "label": "RAG Pipelines", "value": 84 },
+        { "label": "Agent Design", "value": 79 },
+        { "label": "Fine-Tuning", "value": 63 },
+        { "label": "ML Ops", "value": 57 }
+      ],
+      "body": "Source: LinkedIn AI Jobs Report, April 2026"
+    },
+    {
+      "type": "quote",
+      "body": "Open source is not just an alternative to proprietary AI — it's becoming the default. The future belongs to models everyone can inspect, improve, and trust.",
+      "author": "Yann LeCun"
+    }
+  ]
+}
